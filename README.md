@@ -112,6 +112,8 @@ Example table:
 
 The most important row for the improvement is **Tier-3 region PSNR**, because it isolates only the blocks where both primary recovery copies were destroyed. Whole-image averages dilute this effect because most blocks are already recovered by Tier 1 or Tier 2.
 
+Both methods are given the **same attacked image** (cropped from the improved watermarked image), so the recovery comparison is fair. The `Watermarked PSNR` row still reports each method's own embedding distortion.
+
 A CSV of the same table is written as `comparison.csv`.
 
 ---
@@ -312,6 +314,7 @@ They must be different.
 - If you see `use the saved watermarked_16bit.png, not an 8-bit preview`, you passed a normal 8-bit image to `--attacked`.
 - If you see a shape mismatch, your cropped image changed the image size.
 - Very smooth images may show only a small Tier-3 gain because neighbour averaging is already good there. High-contrast edges and highlights show the benefit most clearly.
+- If you compare methods, do not crop each method's watermarked image separately: that gives the baseline a hidden quality advantage and can make the improved method look worse. `run_comparison.py` avoids this by cropping one watermarked image once and attacking both methods with it.
 
 ---
 

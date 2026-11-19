@@ -35,8 +35,8 @@ def main():
     improved_watermarked = improved.embed_image(original, args.seed)
 
     if args.attacked is None:
-        baseline_attacked, attacked_pixels = baseline.apply_crop(baseline_watermarked, args.crop)
-        improved_attacked, _ = improved.apply_crop(improved_watermarked, args.crop)
+        improved_attacked, attacked_pixels = improved.apply_crop(improved_watermarked, args.crop)
+        baseline_attacked = improved_attacked.copy()
     else:
         baseline_attacked = improved.load_exact(args.attacked)
         improved_attacked = baseline_attacked.copy()

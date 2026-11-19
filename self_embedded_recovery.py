@@ -197,11 +197,17 @@ class SelfEmbeddedWatermarker:
     @staticmethod
     def _correct_to_bucket(value, bucket):
         mean_value = np.mean(value)
-        guess = int(np.clip(np.rint(mean_value), 0, 255)) // 64
-        if guess == bucket:
+        low = bucket * 64
+        high = low + 63
+        if low <= mean_value <= high:
             return np.clip(value, 0, 255)
+        distance = low - mean_value if mean_value < low else mean_value - high
+        midpoint = low + 32
+        strength = min(1.0, distance / 64.0)
+        corrected_mean = mean_value + strength * (midpoint - mean_value)
+        corrected_mean = float(np.clip(corrected_mean, low, high))
         detail = value - mean_value
-        return np.clip((bucket * 64 + 32) + detail, 0, 255)
+        return np.clip(corrected_mean + detail, 0, 255)
 
     @staticmethod
     def _neighbour_average(blocks, row, col):
