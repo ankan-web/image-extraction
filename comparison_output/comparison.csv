@@ -1,8 +1,8 @@
 Metric,Baseline,Improved
-Watermarked PSNR (dB),34.21,32.71
+Watermarked PSNR (dB),33.98,32.43
 Detection accuracy (%),100.00,100.00
 Detection sensitivity (%),100.00,100.00
-Recovered PSNR whole (dB),27.26,27.43
-Recovered SSIM whole,0.8240,0.8268
-Tier-3 assisted blocks,-,326 / 5476
-Tier-3 region PSNR (dB),22.31,23.71
+Recovered PSNR whole (dB),24.82,24.82
+Recovered SSIM whole,0.7687,0.7685
+Tier-3 assisted blocks,-,188 / 3364
+Tier-3 region PSNR (dB),23.18,23.20
